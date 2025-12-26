@@ -1,0 +1,74 @@
+{
+  "todos": [
+    {
+      "id": "5933",
+      "title": "Abdi's birthday",
+      "category": "Birthdays",
+      "startDate": "",
+      "dueDate": "2025-12-31",
+      "description": "Buy a gift!",
+      "status": "not-started",
+      "completed": false
+    },
+    {
+      "id": "db28",
+      "title": "Submit proposal",
+      "category": "work",
+      "startDate": "2025-12-28",
+      "dueDate": "2026-01-10",
+      "description": "Need to finish documentation",
+      "status": "completed",
+      "completed": true
+    },
+    {
+      "id": "0807",
+      "title": "pay bills",
+      "category": "personal",
+      "startDate": "",
+      "dueDate": "2025-12-31",
+      "description": "-electricity\n-water",
+      "status": "in-progress",
+      "completed": false
+    },
+    {
+      "id": "09e3",
+      "title": "visit the dentist",
+      "category": "Personal",
+      "startDate": "",
+      "dueDate": "2026-01-05",
+      "description": "get blue braces!",
+      "status": "completed",
+      "completed": true
+    },
+    {
+      "id": "36b4",
+      "title": "Go on a trip",
+      "category": "Personal",
+      "startDate": "2026-02-01",
+      "dueDate": "2026-02-06",
+      "description": "Visit Sisay",
+      "status": "not-started",
+      "completed": false
+    },
+    {
+      "id": "c335",
+      "title": "Get my hair done",
+      "category": "Personal",
+      "startDate": "",
+      "dueDate": "2025-12-28",
+      "description": "Self-care day",
+      "status": "completed",
+      "completed": true
+    },
+    {
+      "id": "91b9",
+      "title": "Buy a couch",
+      "category": "Home",
+      "startDate": "",
+      "dueDate": "2025-12-27",
+      "description": "Need a better sofa",
+      "status": "not-started",
+      "completed": false
+    }
+  ]
+}

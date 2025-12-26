@@ -2,8 +2,208 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To Do List</title>
+    <title>To‑Do Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/c80abd48a2.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body></body>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="avatar-circle">M</div>
+          <div>
+            <h2 class="app-title">Dashboard</h2>
+            <p class="user-email">meti@example.com</p>
+          </div>
+        </div>
+        <nav class="nav">
+          <button class="nav-item active">Dashboard</button>
+          <button class="nav-item">My Tasks</button>
+          <button class="nav-item">Categories</button>
+          <button class="nav-item">Settings</button>
+          <button class="nav-item">Help</button>
+        </nav>
+        <button class="logout-btn">Log Out</button>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="search-wrapper">
+            <input
+              type="text"
+              id="search-input"
+              class="search-input"
+              placeholder="Search your task here..."
+            />
+            <button
+              id="search-button"
+              class="search-button"
+              aria-label="Search"
+            >
+              <i
+                id="search-icon-search"
+                class="fa-solid fa-magnifying-glass"
+              ></i>
+              <i
+                id="search-icon-clear"
+                class="fa-solid fa-x"
+                style="display: none"
+              ></i>
+            </button>
+          </div>
+
+          <div class="topbar-right">
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle theme"
+            >
+              <i id="icon-sun" class="fa-solid fa-sun"></i>
+              <i
+                id="icon-moon"
+                class="fa-solid fa-moon"
+                style="display: none"
+              ></i>
+            </button>
+            <span class="date-label" id="date-label"></span>
+          </div>
+        </header>
+
+        <section class="greeting">
+          <h1>Welcome back, Meti 👋</h1>
+        </section>
+
+        <section class="dashboard">
+          <div class="panel panel-todos">
+            <div class="panel-header">
+              <h2>To‑Do</h2>
+              <button id="add-task-btn" class="btn-primary">+ Add Task</button>
+            </div>
+            <div id="todo-list" class="todo-list">
+              <!-- Tasks added here -->
+            </div>
+          </div>
+
+          <div class="panel panel-side">
+            <div class="status-panel">
+              <h2>Task Status</h2>
+              <div class="status-circles">
+                <div class="status-item">
+                  <img
+                    src="not_started.png"
+                    alt="Not started tasks"
+                    class="status-icon-img"
+                  />
+                  <p>Not Started</p>
+                  <span id="count-notstarted">0</span>
+                </div>
+                <div class="status-item">
+                  <img
+                    src="in_progress.png"
+                    alt="In progress tasks"
+                    class="status-icon-img"
+                  />
+                  <p>In Progress</p>
+                  <span id="count-progress">0</span>
+                </div>
+                <div class="status-item">
+                  <img
+                    src="completed.png"
+                    alt="Completed tasks"
+                    class="status-icon-img"
+                  />
+                  <p>Completed</p>
+                  <span id="count-completed">0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="completed-panel">
+              <h2>Completed Tasks</h2>
+              <div id="completed-list" class="completed-list">
+                <!-- List of completed tasks -->
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="task-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="task-modal-title">Add New Task</h2>
+          <button class="modal-close" id="task-modal-close">&times;</button>
+        </div>
+        <form id="task-form" class="modal-body">
+          <label>
+            Title
+            <input type="text" name="title" required />
+          </label>
+          <label>
+            Category
+            <input type="text" name="category" />
+          </label>
+          <label>
+            Start Date
+            <input type="date" name="startDate" />
+          </label>
+          <label>
+            Due Date
+            <input type="date" name="dueDate" required />
+          </label>
+          <label>
+            Description
+            <textarea name="description" rows="4" required></textarea>
+          </label>
+          <div class="modal-actions">
+            <button type="submit" class="btn-primary">Save</button>
+            <button type="button" id="task-modal-cancel" class="btn-outline">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="detail-modal" class="modal hidden">
+      <div class="modal-content modal-detail">
+        <div class="modal-header">
+          <h2 id="detail-title">Task Title</h2>
+          <button class="modal-close" id="detail-modal-close">&times;</button>
+        </div>
+        <div class="modal-body detail-body">
+          <p><strong>Category:</strong> <span id="detail-category"></span></p>
+          <p>
+            <strong>Start Date:</strong> <span id="detail-startDate"></span>
+          </p>
+          <p><strong>Due Date:</strong> <span id="detail-dueDate"></span></p>
+          <p><strong>Status:</strong> <span id="detail-status"></span></p>
+          <p class="detail-description" id="detail-description"></p>
+        </div>
+        <div class="modal-actions modal-actions-split">
+          <div class="status-buttons">
+            <button id="detail-notstarted-btn" class="btn-status">
+              Not Started
+            </button>
+            <button id="detail-progress-btn" class="btn-status">
+              In Progress
+            </button>
+            <button id="detail-complete-btn" class="btn-status">
+              Completed
+            </button>
+          </div>
+          <div class="action-buttons">
+            <button id="detail-edit-btn" class="btn-outline">Edit</button>
+            <button id="detail-delete-btn" class="btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
