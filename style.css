@@ -299,7 +299,6 @@ button {
   border-color: #f26a54;
 }
 
-/* list */
 .todo-list {
   display: flex;
   flex-direction: column;

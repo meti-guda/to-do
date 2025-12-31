@@ -124,7 +124,6 @@ function setupListeners() {
       e.preventDefault();
       const hasText = searchInput.value.trim().length > 0;
       if (hasText) {
-        // clear
         searchInput.value = "";
         updateSearchIcons();
         loadTodos("");
@@ -165,21 +164,12 @@ function setupListeners() {
 
 async function loadTodos(query = "") {
   try {
-    const res = await fetch(API_URL);
+    const url = query ? `${API_URL}?q=${encodeURIComponent(query)}` : API_URL;
+
+    const res = await fetch(url);
     if (!res.ok) throw new Error("Failed to load todos");
 
-    let data = await res.json();
-
-    if (query) {
-      const q = query.toLowerCase();
-      data = data.filter((todo) => {
-        return (
-          todo.title?.toLowerCase().includes(q) ||
-          todo.description?.toLowerCase().includes(q) ||
-          todo.category?.toLowerCase().includes(q)
-        );
-      });
-    }
+    const data = await res.json();
 
     currentTodos = Array.isArray(data) ? data : [];
     renderTodos();
